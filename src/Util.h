@@ -1,5 +1,11 @@
+#pragma once
 #include "../gen-cpp/LightService.h"
 namespace light{
+
+enum CacheTypes{
+  BRUTAL_LOCAL_CACHE,
+  LRU_LOCAL_CACHE,
+};
 
 long getNowSeconds();
 

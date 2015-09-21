@@ -1,4 +1,4 @@
-#include "LocalCache.h"
+#include "LocalBrutalCache.h"
 #include "Util.h"
 #include "Constants.h"
 #include <chrono>
@@ -8,9 +8,9 @@ namespace light{
 
 using namespace std;
 
-std::shared_ptr<LocalCache> LocalCache::localcache_obj_ = NULL;
+std::shared_ptr<LocalBrutalCache> LocalBrutalCache::localcache_obj_ = NULL;
 
-void LocalCache::set(const string& key,
+void LocalBrutalCache::set(const string& key,
 					 const string& value,
 					 const int64_t& ttl){
   // set value to cahce
@@ -21,7 +21,7 @@ void LocalCache::set(const string& key,
   local_cache_timer_.insert(pair<string, int64_t>(key, expire));
 }
 
-string LocalCache::get(const string& key) {
+string LocalBrutalCache::get(const string& key) {
   auto&& kv = local_cache_.find(key);
   if (kv != local_cache_.end()) {
     return kv->second;
@@ -30,15 +30,15 @@ string LocalCache::get(const string& key) {
   return "";
 }
 
-std::shared_ptr<LocalCache> LocalCache::getInstance(){
+std::shared_ptr<LocalBrutalCache> LocalBrutalCache::getInstance(){
   if (localcache_obj_ == NULL){
 	// If use make_shared, have to make the constructor public.
-	localcache_obj_ = std::shared_ptr<LocalCache>(new LocalCache());
+	localcache_obj_ = std::shared_ptr<LocalBrutalCache>(new LocalBrutalCache());
   }
   return localcache_obj_;
 }
 
-void LocalCache::invalidate() {
+void LocalBrutalCache::invalidate() {
   while (invalidation_check_) {
 	// If needed to delete items while iterating
 	// can not use (auto& kv : map)
@@ -65,7 +65,7 @@ void LocalCache::invalidate() {
   }
 }
 
-LocalCache::LocalCache(): invalidation_check_(true){
+LocalBrutalCache::LocalBrutalCache(): invalidation_check_(true){
   cache_check_thread_ = std::thread([this] {
     LOG(INFO) << "Start local cache invalidation thread";
     invalidate();
