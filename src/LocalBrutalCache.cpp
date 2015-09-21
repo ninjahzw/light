@@ -8,8 +8,6 @@ namespace light{
 
 using namespace std;
 
-std::shared_ptr<LocalBrutalCache> LocalBrutalCache::localcache_obj_ = NULL;
-
 void LocalBrutalCache::set(const string& key,
 					 const string& value,
 					 const int64_t& ttl){
@@ -28,14 +26,6 @@ string LocalBrutalCache::get(const string& key) {
   }
   // TODO throw exception
   return "";
-}
-
-std::shared_ptr<LocalBrutalCache> LocalBrutalCache::getInstance(){
-  if (localcache_obj_ == NULL){
-	// If use make_shared, have to make the constructor public.
-	localcache_obj_ = std::shared_ptr<LocalBrutalCache>(new LocalBrutalCache());
-  }
-  return localcache_obj_;
 }
 
 void LocalBrutalCache::invalidate() {

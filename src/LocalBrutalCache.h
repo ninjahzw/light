@@ -32,8 +32,6 @@ class LocalBrutalCache: public ILocalCache {
   void invalidate();
 
  private:
-  static std::shared_ptr<LocalBrutalCache> localcache_obj_;
-
   /**
    * the object that stors local cache data
    */
