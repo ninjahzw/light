@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
   boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
 
   boost::shared_ptr<ThreadManager> threadManager =
-    ThreadManager::newSimpleThreadManager(Constants::num_work_threads);
+    ThreadManager::newSimpleThreadManager(Constants::NUM_WORK_THREADS);
   boost::shared_ptr<PosixThreadFactory> threadFactory =
     boost::shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
   threadManager->threadFactory(threadFactory);

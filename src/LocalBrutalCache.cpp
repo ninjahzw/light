@@ -51,7 +51,7 @@ void LocalBrutalCache::invalidate() {
 	} 
 	// sleep for a while
 	std::this_thread::sleep_for(
-		std::chrono::milliseconds(Constants::local_cache_check_sleep));
+		std::chrono::milliseconds(Constants::LOCAL_CACHE_CHECK_SLEEP));
   }
 }
 

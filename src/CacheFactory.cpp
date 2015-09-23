@@ -1,5 +1,7 @@
 #include "CacheFactory.h"
 #include "LocalBrutalCache.h"
+#include "LocalLRUCache.h"
+#include "Constants.h"
 
 namespace light {
 
@@ -17,7 +19,8 @@ std::shared_ptr<ILocalCache> CacheFactory::getCache(CacheTypes types){
 	  return CacheFactory::brutal_cache_;
 	case CacheTypes::LRU_LOCAL_CACHE:
 	  if (CacheFactory::lru_cache_ == NULL){
-		//TODO initialize LRU cache instance
+		CacheFactory::lru_cache_ = std::shared_ptr<LocalLRUCache>(
+			new LocalLRUCache(Constants::LRU_CAPACITY));
 	  }
 	  return CacheFactory::lru_cache_;
   } 

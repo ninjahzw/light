@@ -22,14 +22,14 @@ void LightServiceHandler::add(const AddArgs& addArgs) {
 	throwException(InvalidArgsException(), 1,
 		"invalid argument");
   }
-  auto lc = CacheFactory::getCache(CacheTypes::BRUTAL_LOCAL_CACHE); 
+  auto lc = CacheFactory::getCache(CacheTypes::LRU_LOCAL_CACHE); 
   lc-> set(addArgs.key, addArgs.value, addArgs.ttl);
 }
 
 void LightServiceHandler::get(std::string& return_,
 							  const string& key){
 
-  auto lc = CacheFactory::getCache(CacheTypes::BRUTAL_LOCAL_CACHE); 
+  auto lc = CacheFactory::getCache(CacheTypes::LRU_LOCAL_CACHE); 
   return_ = lc-> get(key);
 }
 }

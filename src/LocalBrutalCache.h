@@ -35,9 +35,9 @@ class LocalBrutalCache: public ILocalCache {
   /**
    * the object that stors local cache data
    */
-  std::unordered_map<std::string, std::string> local_cache_;
+  std::unordered_map<std::string, std::string> local_cache_{};
 
-  std::unordered_map<std::string, int64_t> local_cache_timer_;
+  std::unordered_map<std::string, int64_t> local_cache_timer_{};
 
   /**
    * The thread for cache invalidation.

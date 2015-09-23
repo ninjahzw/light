@@ -2,8 +2,10 @@
 
 namespace light {
 
-int Constants::local_cache_check_sleep = 100;
+int Constants::LOCAL_CACHE_CHECK_SLEEP = 100;
 
-int Constants::num_work_threads = 10;
+int Constants::NUM_WORK_THREADS = 10;
+
+int Constants::LRU_CAPACITY = 3;
 
 }
