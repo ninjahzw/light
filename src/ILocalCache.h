@@ -14,7 +14,7 @@ class ILocalCache{
    */
   virtual void set(const std::string& key,
 				   const std::string& value,
-				   const int64_t& ttl) = 0;
+				   const int64_t& ttl=30) = 0;
   /**
    * To get the value by the key.
    * @param key: the key as a string
