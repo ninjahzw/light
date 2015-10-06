@@ -6,12 +6,16 @@ Here "Brutal cache" means don't care about the memory occupation, only remove ca
 </p>
 <p>
 Usage:
+</p>
+<p>
 To use and a lib:
 </p>
 ```
 auto cache_ = CacheFactory::getCache(CacheTypes::BRUTAL_LOCAL_CACHE);
 ```
+<p>
 To use as a service:
+</p>
 ```
 Check the client/CppClient.cpp for usecase.
 ```
