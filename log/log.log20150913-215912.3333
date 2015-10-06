@@ -1,4 +1,0 @@
-Log file created at: 2015/09/13 21:59:12
-Running on machine: ip-172-31-32-155
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-I0913 21:59:12.313007  3335 LocalCache.cpp:70] Start local cache invalidation thread
