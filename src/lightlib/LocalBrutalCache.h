@@ -17,6 +17,8 @@ class LocalBrutalCache: public ILocalCache {
    * some variables.
    */
   LocalBrutalCache();
+
+  ~LocalBrutalCache();
   /**
    * Get the LocalBrutalCache instance
    * @return the LocalBrutalCache singleton instance
@@ -24,10 +26,10 @@ class LocalBrutalCache: public ILocalCache {
   static std::shared_ptr<LocalBrutalCache> getInstance();
 
   void set(const std::string& key,
-		   const std::string& value,
+		   const boost::any& value,
 		   const int64_t& ttl = 30) override;
 
-  std::string get(const std::string& key) override;
+  boost::any get(const std::string& key) override;
 
   void invalidate();
 
@@ -35,7 +37,7 @@ class LocalBrutalCache: public ILocalCache {
   /**
    * the object that stors local cache data
    */
-  std::unordered_map<std::string, std::string> local_cache_{};
+  std::unordered_map<std::string, boost::any> local_cache_{};
 
   std::unordered_map<std::string, int64_t> local_cache_timer_{};
 

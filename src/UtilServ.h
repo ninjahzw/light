@@ -1,6 +1,8 @@
 #pragma once
 #include "../gen-cpp/LightService.h"
+
 namespace light{
+namespace service{
 
 enum CacheTypes{
   BRUTAL_LOCAL_CACHE,
@@ -19,5 +21,6 @@ void throwException(T&& e,
   e.errorCode = errorCode;
   e.message = message;
   throw e;
+}
 }
 }

@@ -5,10 +5,11 @@
 #include <thrift/transport/TTransportUtils.h>
 #include <thrift/TToString.h>
 
-#include "CacheFactory.h"
-#include "Util.h"
+#include "lightlib/CacheFactory.h"
+#include "UtilServ.h"
 
 namespace light {
+namespace service{
 
 using namespace std;
 using namespace apache::thrift;
@@ -22,14 +23,15 @@ void LightServiceHandler::add(const AddArgs& addArgs) {
 	throwException(InvalidArgsException(), 1,
 		"invalid argument");
   }
-  auto lc = CacheFactory::getCache(CacheTypes::LRU_LOCAL_CACHE); 
+  auto lc = CacheFactory::getCache(light::CacheTypes::LRU_LOCAL_CACHE); 
   lc-> set(addArgs.key, addArgs.value, addArgs.ttl);
 }
 
 void LightServiceHandler::get(std::string& return_,
 							  const string& key){
 
-  auto lc = CacheFactory::getCache(CacheTypes::LRU_LOCAL_CACHE); 
-  return_ = lc-> get(key);
+  auto lc = CacheFactory::getCache(light::CacheTypes::LRU_LOCAL_CACHE); 
+  return_ = boost::any_cast<string>(lc-> get(key));
+}
 }
 }

@@ -3,7 +3,7 @@
 #include "../gen-cpp/LightService.h"
 
 namespace light {
-
+namespace service{
 class LightServiceHandler : public LightServiceIf {
  public:
   LightServiceHandler();
@@ -24,4 +24,5 @@ class LightServiceHandler : public LightServiceIf {
    */
   void get(std::string& return_, const std::string& key) override;
 };
+}
 }

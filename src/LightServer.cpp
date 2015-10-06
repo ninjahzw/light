@@ -14,7 +14,6 @@
 #include <sstream>
 
 #include "LightServiceHandler.h"
-#include "Constants.h"
 
 using namespace std;
 using namespace apache::thrift;
@@ -23,7 +22,7 @@ using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
 using namespace apache::thrift::server;
 
-using namespace light;
+using namespace light::service;
 
 int main(int argc, char* argv[]) {
   boost::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
@@ -33,7 +32,7 @@ int main(int argc, char* argv[]) {
   boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
 
   boost::shared_ptr<ThreadManager> threadManager =
-    ThreadManager::newSimpleThreadManager(Constants::NUM_WORK_THREADS);
+    ThreadManager::newSimpleThreadManager(10);
   boost::shared_ptr<PosixThreadFactory> threadFactory =
     boost::shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
   threadManager->threadFactory(threadFactory);

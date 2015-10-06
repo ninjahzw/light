@@ -12,13 +12,13 @@ namespace light {
 class CacheEntry {
  public:
   std::string key;
-  std::string value;
+  boost::any value;
   CacheEntry* prev;
   CacheEntry* next;
-  CacheEntry(std::string key, std::string value): key(key),
-												  value(value),
-												  prev(nullptr),
-												  next(nullptr){}
+  CacheEntry(std::string key, boost::any value): key(key),
+												 value(value),
+												 prev(nullptr),
+												 next(nullptr){}
 };
 
 class LocalLRUCache: public ILocalCache {
@@ -28,10 +28,10 @@ class LocalLRUCache: public ILocalCache {
    * ttl is ignored here.	
    */
   void set(const std::string& key,
-		   const std::string& value,
+		   const boost::any& value,
 		   const int64_t& ttl) override;
 
-  std::string get(const std::string& key) override;
+  boost::any get(const std::string& key) override;
 
  private:
   void removeEntry(CacheEntry* entry);

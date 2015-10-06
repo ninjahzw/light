@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <boost/any.hpp>
 
 namespace light {
 class ILocalCache{
@@ -13,13 +14,13 @@ class ILocalCache{
    * NOTE that ttl is ignored in some cache implementation like LRU cache.
    */
   virtual void set(const std::string& key,
-				   const std::string& value,
+				   const boost::any& value,
 				   const int64_t& ttl=30) = 0;
   /**
    * To get the value by the key.
    * @param key: the key as a string
    * @return the value as a string
    */
-  virtual std::string get(const std::string& key) = 0;
+  virtual boost::any get(const std::string& key) = 0;
 };
 }

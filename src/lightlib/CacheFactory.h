@@ -1,7 +1,7 @@
 #pragma once
 #include "Util.h"
 #include "ILocalCache.h"
-
+#include <memory>
 #include <exception>
 
 namespace light {

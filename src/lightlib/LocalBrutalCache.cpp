@@ -9,23 +9,22 @@ namespace light{
 using namespace std;
 
 void LocalBrutalCache::set(const string& key,
-					 const string& value,
-					 const int64_t& ttl){
+						   const boost::any& value,
+						   const int64_t& ttl){
   // set value to cahce
-  local_cache_.insert(pair<string, string>(key, value));
+  local_cache_.insert(pair<string, boost::any>(key, value));
   
   // set timmer
   auto&& expire = getNowSeconds() + ttl;
   local_cache_timer_.insert(pair<string, int64_t>(key, expire));
 }
 
-string LocalBrutalCache::get(const string& key) {
+boost::any LocalBrutalCache::get(const string& key) {
   auto&& kv = local_cache_.find(key);
   if (kv != local_cache_.end()) {
     return kv->second;
   }
-  // TODO throw exception
-  return "";
+  return boost::any(); 
 }
 
 void LocalBrutalCache::invalidate() {
@@ -61,5 +60,10 @@ LocalBrutalCache::LocalBrutalCache(): invalidation_check_(true){
     invalidate();
     LOG(INFO) << "Local cache invalidation thread stopped!";
   });
+}
+
+LocalBrutalCache::~LocalBrutalCache(){
+  invalidation_check_ = false;
+  cache_check_thread_.join();
 }
 }

@@ -9,7 +9,7 @@ namespace light{
 using namespace std;
 
 void LocalLRUCache::set(const string& key,
-					    const string& value,
+					    const boost::any& value,
 						const int64_t& ttl){
   auto value_it = local_cache_.find(key);
   // if key already exists
@@ -46,7 +46,7 @@ void LocalLRUCache::set(const string& key,
   size_ ++;
 }
 
-string LocalLRUCache::get(const string& key) {
+boost::any LocalLRUCache::get(const string& key) {
   auto&& kv = local_cache_.find(key);
   if (kv != local_cache_.end()) {
 	auto& entry = kv->second;
@@ -54,8 +54,7 @@ string LocalLRUCache::get(const string& key) {
 	setHead(&entry);
     return entry.value;
   }
-  // TODO throw exception
-  return "";
+  return boost::any();
 }
 
 /**
