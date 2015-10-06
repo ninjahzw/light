@@ -1,7 +1,7 @@
 #pragma once
-namespace light{
+namespace light {
 
-enum CacheTypes{
+enum CacheTypes {
   BRUTAL_LOCAL_CACHE,
   LRU_LOCAL_CACHE,
 };

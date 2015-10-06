@@ -1,8 +1,8 @@
 #pragma once
 namespace light {
 
-class Constants{
- public:
+class Constants {
+public:
   /**
    * settings for LocalCache class
    * the check thread sleeps in milliseconds.

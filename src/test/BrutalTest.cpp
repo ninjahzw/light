@@ -9,8 +9,8 @@
 using namespace std;
 using namespace light;
 
-class BrutalTest: public ::testing::Test{
- protected:
+class BrutalTest : public ::testing::Test {
+protected:
   BrutalTest() {}
 
   virtual void SetUp() {}
@@ -22,8 +22,8 @@ TEST_F(BrutalTest, set_get) {
   auto cache_ = CacheFactory::getCache(CacheTypes::BRUTAL_LOCAL_CACHE);
   string key{"1"};
   string value{"1"};
-  cache_ -> set(key, value);
-  EXPECT_EQ(boost::any_cast<string>(cache_ -> get("1")), "1");
+  cache_->set(key, value);
+  EXPECT_EQ(boost::any_cast<string>(cache_->get("1")), "1");
 }
 
 int main(int argc, char **argv) {

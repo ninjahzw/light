@@ -3,9 +3,9 @@
 #include "../gen-cpp/LightService.h"
 
 namespace light {
-namespace service{
+namespace service {
 class LightServiceHandler : public LightServiceIf {
- public:
+public:
   LightServiceHandler();
 
   void ping() override;
@@ -15,14 +15,14 @@ class LightServiceHandler : public LightServiceIf {
    * @param addArgs: AddArgs object, key, value are required
    * ttl is optimal, default value is defined in thrift file.
    */
-  void add (const AddArgs& addArgs) override;
+  void add(const AddArgs &addArgs) override;
 
   /**
    * Get a value by key
    * @param the key
    * @return the value corresponding to the key.
    */
-  void get(std::string& return_, const std::string& key) override;
+  void get(std::string &return_, const std::string &key) override;
 };
 }
 }

@@ -1,22 +1,21 @@
 #pragma once
 #include "../gen-cpp/LightService.h"
 
-namespace light{
-namespace service{
+namespace light {
+namespace service {
 
-enum CacheTypes{
+enum CacheTypes {
   BRUTAL_LOCAL_CACHE,
   LRU_LOCAL_CACHE,
 };
 
 long getNowSeconds();
 
-bool checkArgs(const AddArgs& addArgs);
+bool checkArgs(const AddArgs &addArgs);
 
-template<typename T>
-void throwException(T&& e,
-					const int64_t& errorCode,
-					const std::string& message){
+template <typename T>
+void throwException(T &&e, const int64_t &errorCode,
+                    const std::string &message) {
 
   e.errorCode = errorCode;
   e.message = message;

@@ -10,32 +10,29 @@
 namespace light {
 
 class CacheEntry {
- public:
+public:
   std::string key;
   boost::any value;
-  CacheEntry* prev;
-  CacheEntry* next;
-  CacheEntry(std::string key, boost::any value): key(key),
-												 value(value),
-												 prev(nullptr),
-												 next(nullptr){}
+  CacheEntry *prev;
+  CacheEntry *next;
+  CacheEntry(std::string key, boost::any value)
+      : key(key), value(value), prev(nullptr), next(nullptr) {}
 };
 
-class LocalLRUCache: public ILocalCache {
- public:
-  LocalLRUCache(int capacity); 
+class LocalLRUCache : public ILocalCache {
+public:
+  LocalLRUCache(int capacity);
   /**
-   * ttl is ignored here.	
+   * ttl is ignored here.
    */
-  void set(const std::string& key,
-		   const boost::any& value,
-		   const int64_t& ttl) override;
+  void set(const std::string &key, const boost::any &value,
+           const int64_t &ttl) override;
 
-  boost::any get(const std::string& key) override;
+  boost::any get(const std::string &key) override;
 
- private:
-  void removeEntry(CacheEntry* entry);
-  void setHead(CacheEntry* entry);
+private:
+  void removeEntry(CacheEntry *entry);
+  void setHead(CacheEntry *entry);
   /**
    * the object that stors local cache data
    */
@@ -49,12 +46,12 @@ class LocalLRUCache: public ILocalCache {
    */
   int size_;
   /**
-   * the head node 
+   * the head node
    */
-  CacheEntry* head_;
+  CacheEntry *head_;
   /**
-   * the tail node 
+   * the tail node
    */
-  CacheEntry* tail_;
-}; 
+  CacheEntry *tail_;
+};
 }

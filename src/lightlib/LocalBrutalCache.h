@@ -8,12 +8,12 @@
 
 namespace light {
 
-class LocalBrutalCache: public ILocalCache {
- public:
+class LocalBrutalCache : public ILocalCache {
+public:
   /**
    * Constructor
    * NOTE: have to explicitely write this default constructor
-   * out because (in cpp file) will use this to initialize 
+   * out because (in cpp file) will use this to initialize
    * some variables.
    */
   LocalBrutalCache();
@@ -25,15 +25,14 @@ class LocalBrutalCache: public ILocalCache {
    */
   static std::shared_ptr<LocalBrutalCache> getInstance();
 
-  void set(const std::string& key,
-		   const boost::any& value,
-		   const int64_t& ttl = 30) override;
+  void set(const std::string &key, const boost::any &value,
+           const int64_t &ttl = 30) override;
 
-  boost::any get(const std::string& key) override;
+  boost::any get(const std::string &key) override;
 
   void invalidate();
 
- private:
+private:
   /**
    * the object that stors local cache data
    */
@@ -47,5 +46,5 @@ class LocalBrutalCache: public ILocalCache {
   std::thread cache_check_thread_;
 
   bool invalidation_check_;
-}; 
+};
 }
